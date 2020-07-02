@@ -1,4 +1,4 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository, getRepository } from 'typeorm';
 
 import Transaction from '../models/Transaction';
 
@@ -17,27 +17,34 @@ class TransactionsRepository extends Repository<Transaction> {
       total: 0,
     };
 
-    // this.transactions.reduce(
-    //   (accumulator: Balance, transaction: Transaction) => {
-    //     switch (transaction.type) {
-    //       case 'income':
-    //         accumulator.income += transaction.value;
-    //         accumulator.total += transaction.value;
-    //         break;
-    //       case 'outcome':
-    //         accumulator.outcome += transaction.value;
-    //         accumulator.total -= transaction.value;
-    //         break;
-    //       default:
-    //         console.log('Something is wrong...');
-    //     }
+    const transactionRepo = getRepository(Transaction);
 
-    //     return resultingBalance;
-    //   },
-    //   resultingBalance,
-    // );
+    const transactions = await transactionRepo.find();
+
+    transactions.reduce((accumulator: Balance, transaction: Transaction) => {
+      switch (transaction.type) {
+        case 'income':
+          accumulator.income += transaction.value;
+          accumulator.total += transaction.value;
+          break;
+        case 'outcome':
+          accumulator.outcome += transaction.value;
+          accumulator.total -= transaction.value;
+          break;
+        default:
+          console.log('Something is wrong...');
+      }
+
+      return resultingBalance;
+    }, resultingBalance);
 
     return resultingBalance;
+  }
+
+  public async findTransactions(): Promise<Transaction[]> {
+    const transactionRepo = getRepository(Transaction);
+
+    return transactionRepo.find();
   }
 }
 
