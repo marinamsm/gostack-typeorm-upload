@@ -1,6 +1,6 @@
-# Finantial Transactions Management
+# Financial Transactions Management
 
-A simple CRUD project in Node, Express, Typescript, TypeORM, PostgreSQL etc. Creation of finantial transactions, transactions and balance listing, transaction removal and csv file upload to import transaction data and store in the database.
+A simple CRUD project in Node, Express, Typescript, TypeORM, PostgreSQL etc. Creation of financial transactions, transactions and balance listing, transaction removal and csv file upload to import transaction data and store in the database.
 
 ### Prerequisites
 
