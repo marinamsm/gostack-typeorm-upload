@@ -19,7 +19,7 @@ class Transaction {
   title: string;
 
   @Column('varchar')
-  type: 'income' | 'outcome';
+  type: 'income' | 'outcome' | string;
 
   @Column('real')
   value: number;
