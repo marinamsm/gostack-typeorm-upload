@@ -18,13 +18,13 @@ The following endpoints can be tested with this server:
 To list transactions:
     GET http://localhost:3333/transactions
 
-To create a repository (the body receives title (string), value (number) and type ('income' | 'outcome')):
+To create a transaction (the body receives title (string), value (number), type ('income' | 'outcome') and category (string)):
     POST http://localhost:3333/transactions
 
 To delete a transaction:
     DELETE http://localhost:3333/transactions/:id
 
-To upload a csv file with transaction data (csv columns order: title, type, value, category. Field name: 'file'):
+To upload a csv file with transaction data (csv columns order: title, type, value, category. Form-data field name: 'file'):
     POST http://localhost:3333/transactions/import
 
 ## Running the tests
